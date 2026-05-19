@@ -11,91 +11,55 @@ body {
   max-width: 860px;
   margin: 0 auto;
   padding: 0 20px;
-  line-height: 1.6;
 }
-
 .hero {
   background: #1a6fd4;
   color: white;
   padding: 50px 20px;
   margin: 0 -20px;
 }
-
 section {
   padding: 40px 0;
-  border-top: 2px solid #1a6fd4;
 }
-
-h2 {
-  color: #1a6fd4;
+.audit-row {
   margin-bottom: 12px;
 }
-
-.solution {
-  padding: 18px 0;
-  border-bottom: 1px solid #ccc;
+.bar-wrap {
+  height: 40px;
+  background: #ddd;
+  margin-top: 20px;
+}
+.bar-seg {
+  height: 100%;
+  float: left;
 }
 </style>
-
 </head>
 <body>
 
-<div>
+<div class="hero">
   <h1>Don't Ball Up Your Stress</h1>
-    <p>How procrastination and social media are destroying our mental health, and what to do about it</p>
 </div>
 
 <section>
-  <h2>Section 1: Academic Stress Is at a Breaking Point</h2>
-
-  <p>For teenagers in high school, academic stress has reached historically high levels.</p>
-
-  <p>Procrastination is when someone voluntarily delays a task even though they know that delaying it will make the situation worse.</p>
-
-  <p>Many students procrastinate to the point it affects their grades and wellbeing.</p>
-
-  <h3>What Stress Does to Your Brain</h3>
-
-  <p>When you're stressed, your brain floods your body with cortisol.</p>
-</section>
-
-<section>
-  <h2>Section 2: Your Phone Is Designed to Steal Your Focus</h2>
-
-  <p>Social media is all engineered specifically to grab your attention and keep you unfocused.</p>
-
-  <h3>How Dopamine Can Trap You</h3>
-
-  <p>Every single notification, new post, or like you see triggers dopamine, a chemical neurotransmitter in your brain.</p>
-
-  <h3>Anxiety and Self-Comparison</h3>
-
-  <p>Comparing your life to others online increases anxiety and lowers self-esteem.</p>
-</section>
-
-<section>
-  <h2>Section 3: 6 Ways to Break the Loop Backed by Scientific Evidence</h2>
-
-  <div class="solution">
-    <h3>Time-Blocking Your Day</h3>
-    <p>Assign specific time slots to specific tasks.</p>
+  <h2>Daily Time Audit</h2>
+  <div class="audit-row">
+    <label>Sleep</label>
+    <input type="number" id="sleep">
   </div>
-
-  <div class="solution">
-    <h3>Conditional Planning</h3>
-    <p>Specific plans work better than vague goals.</p>
+  <div class="audit-row">
+    <label>School</label>
+    <input type="number" id="school">
   </div>
-
-  <div class="solution">
-    <h3>Phone-Free Study Environment</h3>
-    <p>Keeping your phone away improves focus.</p>
+  <div class="audit-row">
+    <label>Social Media</label>
+    <input type="number" id="social">
   </div>
-
-  <div class="solution">
-    <h3>Work in Short Sessions</h3>
-    <p>Short focused sessions help attention stay stronger.</p>
+  <div class="bar-wrap">
+    <div class="bar-seg" style="width:25%; background:#4da6ff;"></div>
+    <div class="bar-seg" style="width:25%; background:#f5c518;"></div>
+    <div class="bar-seg" style="width:25%; background:#e74c3c;"></div>
   </div>
 </section>
-
 </body>
 </html>
