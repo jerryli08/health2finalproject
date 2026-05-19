@@ -8,68 +8,106 @@
 <style>
 body {
   font-family: Arial, sans-serif;
+  background: white;
+  color: #111;
   max-width: 860px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0 20px;
+}
+
+#audit {
+  background: #1a6fd4;
+  color: white;
+  padding: 40px 20px;
+  margin: 0 -20px;
 }
 
 .audit-row {
-  margin-bottom: 12px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 .bar-wrap {
-  height: 40px;
+  height: 36px;
   background: #222;
-  margin-top: 20px;
+  overflow: hidden;
+  margin-top: 24px;
 }
 
 .bar-seg {
-  height: 100%;
   float: left;
+  height: 100%;
+}
+
+.over {
+  opacity: 0.5;
 }
 </style>
-
 </head>
 <body>
 
-<h1>Daily Time Audit</h1>
+<section id="audit">
+
+<h2>Daily Time Audit</h2>
 
 <div class="audit-row">
   <label>Daily Tasks</label>
-  <input type="number" id="daily" value="0" oninput="updateChart()">
+  <input type="number" id="a-daily" value="0" oninput="updateChart()">
 </div>
 
 <div class="audit-row">
   <label>School</label>
-  <input type="number" id="school" value="0" oninput="updateChart()">
+  <input type="number" id="a-school" value="0" oninput="updateChart()">
+</div>
+
+<div class="audit-row">
+  <label>Job</label>
+  <input type="number" id="a-job" value="0" oninput="updateChart()">
 </div>
 
 <div class="audit-row">
   <label>Distractions</label>
-  <input type="number" id="distractions" value="0" oninput="updateChart()">
+  <input type="number" id="a-distract" value="0" oninput="updateChart()">
 </div>
 
-<div class="bar-wrap">
-  <div class="bar-seg" id="daily-bar" style="background:#4da6ff;"></div>
-  <div class="bar-seg" id="school-bar" style="background:#f5c518;"></div>
-  <div class="bar-seg" id="distractions-bar" style="background:#e74c3c;"></div>
+<div class="bar-wrap" id="bar-wrap">
+  <div class="bar-seg" id="seg-daily" style="background:#4da6ff;"></div>
+  <div class="bar-seg" id="seg-school" style="background:#f5c518;"></div>
+  <div class="bar-seg" id="seg-job" style="background:#27ae60;"></div>
+  <div class="bar-seg" id="seg-distract" style="background:#e74c3c;"></div>
+  <div class="bar-seg" id="seg-empty" style="background:#555;"></div>
 </div>
 
-<p id="total"></p>
+<p id="hours-total"></p>
+
+</section>
 
 <script>
 function updateChart() {
-  var daily = parseFloat(document.getElementById('daily').value) || 0;
-  var school = parseFloat(document.getElementById('school').value) || 0;
-  var distractions = parseFloat(document.getElementById('distractions').value) || 0;
+  var daily = parseFloat(document.getElementById('a-daily').value) || 0;
+  var school = parseFloat(document.getElementById('a-school').value) || 0;
+  var job = parseFloat(document.getElementById('a-job').value) || 0;
+  var distract = parseFloat(document.getElementById('a-distract').value) || 0;
 
-  var total = daily + school + distractions;
+  var total = daily + school + job + distract;
 
-  document.getElementById('daily-bar').style.width = (daily / 24 * 100) + '%';
-  document.getElementById('school-bar').style.width = (school / 24 * 100) + '%';
-  document.getElementById('distractions-bar').style.width = (distractions / 24 * 100) + '%';
+  var empty = Math.max(0, 24 - total);
 
-  document.getElementById('total').textContent = total + ' hours used';
+  document.getElementById('seg-daily').style.width = (daily / 24 * 100) + '%';
+  document.getElementById('seg-school').style.width = (school / 24 * 100) + '%';
+  document.getElementById('seg-job').style.width = (job / 24 * 100) + '%';
+  document.getElementById('seg-distract').style.width = (distract / 24 * 100) + '%';
+  document.getElementById('seg-empty').style.width = (empty / 24 * 100) + '%';
+
+  document.getElementById('hours-total').textContent =
+    'Total logged: ' + total.toFixed(1) + ' hrs out of 24';
+
+  if (total > 24) {
+    document.getElementById('bar-wrap').classList.add('over');
+  } else {
+    document.getElementById('bar-wrap').classList.remove('over');
+  }
 }
 </script>
 
