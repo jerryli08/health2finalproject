@@ -57,14 +57,14 @@ p { font-size: 15px; line-height: 1.7; margin-bottom: 14px; }
   color: white;
 }
 
-.bar-wrap { height: 36px; background: #222; overflow: hidden; display: none; margin: 24px 0 0 0; }
+.bar-wrap { height: 36px; background: #222; overflow: hidden; margin: 24px 0 0 0; }
 .bar-seg { float: left; height: 100%; }
 
-.legend { display: none; flex-wrap: wrap; gap: 16px; margin-top: 12px; }
+.legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; }
 .legend-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: white; }
 .legend-dot { width: 14px; height: 14px; display: inline-block; }
 
-#hours-total { font-size: 13px; color: rgba(255,255,255,0.55); margin-top: 10px; display: none; }
+#hours-total { font-size: 13px; color: rgba(255,255,255,0.55); margin-top: 10px; }
 
 footer {
   background: #1a6fd4;
@@ -215,11 +215,7 @@ function updateChart() {
   var job = parseFloat(document.getElementById('a-job').value) || 0;
   var distract = parseFloat(document.getElementById('a-distract').value) || 0;
   var total = daily + school + extra + job + distract;
-  if (total <= 0) return;
   var empty = Math.max(0, 24 - total);
-  document.getElementById('bar-wrap').style.display = 'block';
-  document.getElementById('legend').style.display = 'flex';
-  document.getElementById('hours-total').style.display = 'block';
   document.getElementById('seg-daily').style.width = (daily / 24 * 100) + '%';
   document.getElementById('seg-school').style.width = (school / 24 * 100) + '%';
   document.getElementById('seg-extra').style.width = (extra / 24 * 100) + '%';
@@ -228,6 +224,8 @@ function updateChart() {
   document.getElementById('seg-empty').style.width = (empty / 24 * 100) + '%';
   document.getElementById('hours-total').textContent = 'Total logged: ' + total.toFixed(1) + ' hrs out of 24';
 }
+
+updateChart();
 </script>
 
 </body>
